@@ -1,0 +1,13 @@
+.*
+!/.gitignore
+
+**/*.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+**/.ipynb_checkpoints
+*/.ipynb_checkpoints
+**/__pycache__/
+**/.ipynb_checkpoints/
+**/.DS_Store 
+**/*token.py
+/checkpoints
+check.ipynb

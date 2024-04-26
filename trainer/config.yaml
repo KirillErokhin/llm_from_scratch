@@ -1,0 +1,23 @@
+model: gpt2
+model_name: GPT2WaP
+dataconfig:
+  data_url: https://www.gutenberg.org/cache/epub/2600/pg2600.txt
+  split: 0.9
+  min_context_len: 112
+  max_context_len: 128
+trainer_args:
+  output_dir: checkpoints
+  per_device_train_batch_size: 48
+  per_device_eval_batch_size: 48
+  evaluation_strategy: steps
+  eval_accumulation_steps: 2
+  eval_steps: 20
+  logging_steps: 10
+  gradient_accumulation_steps: 8
+  num_train_epochs: 100
+  weight_decay: 0.1
+  warmup_steps: 1000
+  lr_scheduler_type: cosine
+  learning_rate: 0.005
+  save_steps: 100
+  fp16: True

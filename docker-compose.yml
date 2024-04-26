@@ -1,0 +1,34 @@
+version: '3.8'
+services:
+  llm_from_scratch:
+    image: llm_from_scratch
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: llm_from_scratch
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES={GPU:-2}
+      - MODE=${MODE:-inference}
+      - LOGGING=${LOGGING:-warning}
+      - GRADIO_SERVER_PORT=1235
+      - GRADIO_SERVER_NAME=0.0.0.0
+    ports:
+      - 1235:1235
+    command: >
+      sh -c "
+        if [ \"$$MODE\" = \"training\" ]; then
+          echo Starting to training
+          accelerate launch -m trainer -log $LOGGING
+        else
+          echo Starting to inference
+          python3 -m inference -log $LOGGING
+        fi
+      "
+    env_file:
+      - .env
+    volumes:
+      - ./checkpoints:/llm_from_scratch/checkpoints
+      - ./trainer:/llm_from_scratch/trainer
+      - ./inference:/llm_from_scratch/inference
+    
