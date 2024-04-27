@@ -29,7 +29,7 @@ The full model you can check on [HuggingFace](https://huggingface.co/docs/transf
 
 For evaluation used [perplexity](https://huggingface.co/docs/transformers/perplexity) with cross-entropy loss. 
 
-In this attempt perplexity is too big, so model just generating incoherence text but with book style, model is overfitted on data. How to solve this problem is in research, maybe it's better to reduce size of a model or choose another architecture. 
+In this attempt perplexity is too big, so model just generating incoherence text but with book style, model is overfitted on data. How to solve this problem is in research, maybe it's better to reduce size of a model or choose another architecture. Or data evaluation is too bad also.
 
 ## Tarining, deploy and inference
 
@@ -74,7 +74,8 @@ Then open http://localhost:1235/ and try our model.
 
 ## TODO
 
-- [ ] Another split rull for data.
+- [ ] Another split rule for data.
+- [ ] Clear trash from data 
 - [ ] Data augmentation: translate, paraphrase, generate with another model
 - [ ] Data augmentation: give more information about the world of book
 - [ ] Try another context length
