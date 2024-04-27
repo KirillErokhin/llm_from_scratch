@@ -22,14 +22,16 @@ with open("trainer/config.yaml", "r") as yamlfile:
     cfg = yaml.load(yamlfile, Loader=yaml.FullLoader)
 
 logging.info("Loading model")
-model_path = cfg["trainer_args"]["output_dir"]
-tokenizer = AutoTokenizer.from_pretrained(f"./{model_path}/")
-model = GPT2LMHeadModel.from_pretrained(f"./{model_path}/")
+checkpoint_path = cfg["trainer_args"]["output_dir"]
+user_name = cfg["user_name"]
+model_name = cfg["model_name"]
+
+tokenizer = AutoTokenizer.from_pretrained(f"{user_name}/{model_name}", cache_dir=f"./{checkpoint_path}/")
+model = GPT2LMHeadModel.from_pretrained(f"{user_name}/{model_name}", cache_dir=f"./{checkpoint_path}/")
 pipe = pipeline(
     "text-generation",
     model=model,
     tokenizer=tokenizer,
     do_sample=True,
-    pad_token_id=tokenizer.eos_token_id,
-    device="cpu",
+    device="cpu"
 )

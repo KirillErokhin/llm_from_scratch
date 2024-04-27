@@ -1,23 +1,27 @@
 model: gpt2
+user_name: Kasdeja23
 model_name: GPT2WaP
 dataconfig:
   data_url: https://www.gutenberg.org/cache/epub/2600/pg2600.txt
   split: 0.9
-  min_context_len: 112
-  max_context_len: 128
+  min_context_len: 64
+  max_context_len: 64
 trainer_args:
   output_dir: checkpoints
-  per_device_train_batch_size: 48
-  per_device_eval_batch_size: 48
+  per_device_train_batch_size: 64
+  per_device_eval_batch_size: 64
   evaluation_strategy: steps
-  eval_accumulation_steps: 2
+  eval_accumulation_steps: 4
   eval_steps: 20
   logging_steps: 10
   gradient_accumulation_steps: 8
-  num_train_epochs: 100
+  num_train_epochs: 20
   weight_decay: 0.1
-  warmup_steps: 1000
+  warmup_steps: 750
   lr_scheduler_type: cosine
-  learning_rate: 0.005
-  save_steps: 100
+  learning_rate: 0.0005
+  save_steps: 60
   fp16: True
+  seed: 42
+  # load_best_model_at_end: True
+  save_total_limit: 1

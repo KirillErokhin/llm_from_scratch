@@ -62,7 +62,8 @@ logging.info(f'{cfg["model"]} size: {model.model_size:.1f}M parameters')
 # loading data
 tokenized_datasets = model.prepare_data(*load_data())
 data_collator = DataCollatorForLanguageModeling(model.tokenizer, mlm=False)
-logging.info("Dataset prepared.")
+logging.info(f"Dataset prepared. Length of train: {len(tokenized_datasets['train'])}")
+logging.info(f"Dataset prepared. Length of valid: {len(tokenized_datasets['valid'])}")
 
 # training
 logging.info("Started to training.")
