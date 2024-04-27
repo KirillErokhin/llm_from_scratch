@@ -8,6 +8,6 @@ def greet(text, intensity):
 
 demo = gr.Interface(
     fn=greet,
-    inputs=["text", "slider"],
+    inputs=["text"],
     outputs=["text"],
 )

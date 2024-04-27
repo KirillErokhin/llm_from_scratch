@@ -12,16 +12,17 @@ trainer_args:
   per_device_eval_batch_size: 64
   evaluation_strategy: steps
   eval_accumulation_steps: 4
-  eval_steps: 20
-  logging_steps: 10
-  gradient_accumulation_steps: 8
-  num_train_epochs: 20
-  weight_decay: 0.1
-  warmup_steps: 750
-  lr_scheduler_type: cosine
-  learning_rate: 0.0005
-  save_steps: 60
+  eval_steps: 10
+  logging_steps: 1
+  gradient_accumulation_steps: 4
+  num_train_epochs: 4
+  weight_decay: 0.01
+  learning_rate: 0.006
+  save_steps: 30
   fp16: True
   seed: 42
-  # load_best_model_at_end: True
   save_total_limit: 1
+  warmup_steps: 10
+  load_best_model_at_end: True
+  # max_grad_norm: 2
+  # lr_scheduler_type: cosine
